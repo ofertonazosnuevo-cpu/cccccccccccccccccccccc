@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 Para Danicza 💖</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Georgia', serif;
+        height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ff4d6d, #ff7fa8, #ffb3d9);
+        background-size: 300% 300%;
+        animation: fondo 8s ease infinite;
+        perspective: 1000px;
+    }
+
+    @keyframes fondo {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    /* Pantalla inicial */
+    #pantalla-inicial {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.65);
+        backdrop-filter: blur(6px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        z-index: 10;
+        text-align: center;
+        cursor: pointer;
+        padding: 20px;
+    }
+
+    #pantalla-inicial h1 {
+        font-size: 2.3em;
+        text-shadow: 0 0 10px #fff,
+                     0 0 20px #ffb3d9,
+                     0 0 30px #ff4d6d;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {transform: scale(1);}
+        50% {transform: scale(1.1);}
+        100% {transform: scale(1);}
+    }
+
+    /* Contenido */
+    .container {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 20px;
+        z-index: 2;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+    }
+
+    h1 {
+        font-size: 3em;
+        text-shadow: 0 0 10px #fff,
+                     0 0 20px #ffb3d9,
+                     0 0 30px #ff4d6d,
+                     0 0 40px #ff99c8;
+    }
+
+    p {
+        margin-top: 20px;
+        font-size: 1.5em;
+        max-width: 650px;
+        line-height: 1.6em;
+        text-shadow: 0 0 8px #ffe6f2;
+    }
+
+    /* Corazones flotando 3D */
+    .corazon {
+        position: absolute;
+        bottom: -20px;
+        font-size: 24px;
+        opacity: 0.8;
+        animation: subir 6s linear infinite;
+        transform-style: preserve-3d;
+        text-shadow: 0 0 10px #fff,
+                     0 0 20px #ff99c8,
+                     0 0 30px #ff4d6d;
+    }
+
+    @keyframes subir {
+        0% {transform: translateY(0) rotateY(0deg) scale(1);}
+        100% {transform: translateY(-120vh) rotateY(360deg) scale(1.8); opacity: 0;}
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Pantalla inicial -->
+<div id="pantalla-inicial" onclick="iniciarSorpresa()">
+    <h1>💘 Toca para ver tu mensaje,<br> Danicza, cariño mío xd 💖</h1>
+</div>
+
+<!-- Música -->
+<audio id="musica" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/09/audio_19e6dfbe2b.mp3?filename=romantic-piano-14349.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Contenido -->
+<div class="container" id="contenido">
+    <div>
+        <h1>💖 Para Danicza 💖</h1>
+        <p>
+            Cariño… ¿cómo te voy a dar cólera?  
+            Sabes que soy pan de Dios 😌✨  
+            Ya se te extrañaba muchísimo…  
+            y tú recién apareces.  
+            <br><br>
+            Pero ya estás aquí, y siuuuuuuuuu 💖😎✨
+        </p>
+    </div>
+</div>
+
+<script>
+function iniciarSorpresa() {
+    document.getElementById("pantalla-inicial").style.display = "none";
+    document.getElementById("contenido").style.opacity = "1";
+
+    const audio = document.getElementById("musica");
+    audio.play().catch(()=>{});
+
+    // Corazones y estrellas flotantes 3D
+    setInterval(()=>{
+        const corazon = document.createElement("div");
+        corazon.classList.add("corazon");
+        const simbolos = ["💖","💗","💞","✨","🌟","💘"];
+        corazon.innerHTML = simbolos[Math.floor(Math.random()*simbolos.length)];
+        corazon.style.left = Math.random()*100 + "vw";
+        corazon.style.fontSize = (20 + Math.random()*25) + "px";
+        corazon.style.animationDuration = (5 + Math.random()*3) + "s"; // variación de velocidad
+        document.body.appendChild(corazon);
+        setTimeout(()=>corazon.remove(),6000);
+    },200);
+}
+</script>
+
+</body>
+</html>
+
